@@ -200,7 +200,7 @@ function App() {
                 <h3 className="serif">Contact</h3>
                 <ul>
                   <li><MapPin size={16} /> Jaipur, India</li>
-                  <li><Mail size={16} /> himshrodugar29@gmail.com</li>
+                  <li><Mail size={16} /> himshridugar29@gmail.com</li>
                   <li><Phone size={16} /> +91 9521273739</li>
                 </ul>
               </motion.div>
@@ -227,7 +227,7 @@ function App() {
                 <div className="year"><span className="star-icon">✦</span> Feb - Jul<br/>2026</div>
                 <div className="exp-info">
                   <h4>Digital Marketing Specialist Intern</h4>
-                  <p className="exp-company">Maharo Media | Jaipur, India</p>
+                  <p className="exp-company">Mharoo Media | Jaipur, India</p>
                   <ul className="exp-bullets">
                     <li>Developed comprehensive content strategies and structured monthly content calendars to streamline digital presence across platforms.</li>
                     <li>Managed end-to-end content publishing workflows across multiple digital channels, ensuring high engagement and consistent brand voice.</li>
@@ -291,11 +291,15 @@ function App() {
             </motion.div>
             
             <motion.div variants={fadeInUp} className="skills-block">
-              <h4>Technical Foundation</h4>
+              <h4>Tech Skills</h4>
               <div className="skills-pill-tags">
-                <span>Computer Science Principles</span>
-                <span>Data Insights</span>
-                <span>Platform Performance Analytics</span>
+                <span>Computer Science Engineering Principles</span>
+                <span>Canva</span>
+                <span>Notion</span>
+                <span>Google Workspace</span>
+                <span>Figma</span>
+                <span>Claude AI</span>
+                <span>Google Analytics</span>
               </div>
             </motion.div>
           </motion.div>
@@ -319,7 +323,7 @@ function App() {
             <div className="portfolio-grid">
               <motion.div variants={fadeInUp} className="portfolio-card">
                 <div className="card-icon"><ExternalLink size={24} /></div>
-                <h3>Maharo Media</h3>
+                <h3>Mharoo Media</h3>
                 <span className="card-subtitle">Social Media Management & Brand Growth</span>
                 <p>Spearheaded full-scale digital branding and regular content delivery pipelines to elevate official social presence and reach.</p>
               </motion.div>
@@ -433,7 +437,7 @@ function App() {
           <div className="footer-links">
             <a href="https://instagram.com/himshri.dugar" target="_blank" rel="noreferrer"><InstagramIcon /> @himshri.dugar</a>
             <a href="https://linkedin.com/in/himshri-dugar" target="_blank" rel="noreferrer"><LinkedinIcon /> in/himshri-dugar</a>
-            <a href="mailto:himshrodugar29@gmail.com"><MailIcon /> himshrodugar29@gmail.com</a>
+            <a href="mailto:himshridugar29@gmail.com"><MailIcon /> himshridugar29@gmail.com</a>
           </div>
         </motion.div>
         <div className="footer-bottom">
