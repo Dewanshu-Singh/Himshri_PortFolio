@@ -232,7 +232,7 @@ function App() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >B.Tech '26</motion.div>
-              <img src="/IMG-20260210-WA0029.jpg.jpeg" alt="Himshri Dugar" />
+              <img src="/img2.jpeg" alt="Himshri Dugar" />
               <motion.div 
                 className="pill-badge pill-2"
                 initial={{ opacity: 0, x: 30 }}
