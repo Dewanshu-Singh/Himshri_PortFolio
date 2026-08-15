@@ -239,7 +239,7 @@ function App() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-              >Jaipur, India</motion.div>
+              >Surat, India</motion.div>
               
               <motion.div 
                 className="contact-card"
@@ -250,7 +250,7 @@ function App() {
               >
                 <h3 className="serif">Contact</h3>
                 <ul>
-                  <li><MapPin size={16} /> Jaipur, India</li>
+                  <li><MapPin size={16} /> Surat, India</li>
                   <li>
                     <Mail size={16} /> 
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=himshridugar29@gmail.com" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>himshridugar29@gmail.com</a>
