@@ -46,11 +46,36 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
-  const handleContactSubmit = (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setIsError(false);
+    
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/contact';
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        setIsError(true);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setIsError(true);
+    }
   };
 
   useEffect(() => {
@@ -124,7 +149,7 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <p><span>IG:</span> <a href="https://instagram.com/himshri.dugar" target="_blank" rel="noreferrer" style={{color: 'inherit', textDecoration: 'none'}}>@himshri.dugar</a></p>
+              <p><span>IG:</span> <a href="https://www.instagram.com/hiimshreeee?igsh=bW0zdDBmOHp3bnBo" target="_blank" rel="noreferrer" style={{color: 'inherit', textDecoration: 'none'}}>@hiimshreeee</a></p>
               <p><span>LI:</span> <a href="https://linkedin.com/in/himshri-dugar" target="_blank" rel="noreferrer" style={{color: 'inherit', textDecoration: 'none'}}>/in/himshri-dugar</a></p>
               <p style={{ marginTop: '1.5rem', maxWidth: '320px', fontSize: '0.9rem', color: '#a0a0a0', lineHeight: '1.6' }}>
                 Creative and results-driven Social Media Manager with a background in CS Engineering, turning ideas into impactful digital marketing campaigns.
@@ -155,7 +180,33 @@ function App() {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
           >
-            <h2 className="about-title serif">Hello,<br/>I'm Himshri !</h2>
+            <h2 className="about-title serif">
+              {"Hello,".split("").map((char, index) => (
+                <motion.span
+                  key={`hello-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  style={{ display: "inline-block" }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+              <br/>
+              {"I'm Himshri !".split("").map((char, index) => (
+                <motion.span
+                  key={`himshri-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
+                  style={{ display: "inline-block" }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </h2>
             <p className="about-desc">
               I am a creative and results-driven Social Media Manager with a background in Computer Science Engineering and hands-on experience in digital marketing. Passionate about turning ideas into impactful campaigns—from content strategy and planning to execution and brand communication.
               <br/><br/>
@@ -200,7 +251,10 @@ function App() {
                 <h3 className="serif">Contact</h3>
                 <ul>
                   <li><MapPin size={16} /> Jaipur, India</li>
-                  <li><Mail size={16} /> himshridugar29@gmail.com</li>
+                  <li>
+                    <Mail size={16} /> 
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=himshridugar29@gmail.com" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>himshridugar29@gmail.com</a>
+                  </li>
                   <li><Phone size={16} /> +91 9521273739</li>
                 </ul>
               </motion.div>
@@ -322,31 +376,39 @@ function App() {
 
             <div className="portfolio-grid">
               <motion.div variants={fadeInUp} className="portfolio-card">
-                <div className="card-icon"><ExternalLink size={24} /></div>
                 <h3>Mharoo Media</h3>
                 <span className="card-subtitle">Social Media Management & Brand Growth</span>
                 <p>Spearheaded full-scale digital branding and regular content delivery pipelines to elevate official social presence and reach.</p>
+                <a href="https://www.instagram.com/mharoomedia?igsh=eGJrenYwdzl5dTU1" target="_blank" rel="noreferrer" className="see-profile-link">
+                  See profile <ExternalLink size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
+                </a>
               </motion.div>
 
               <motion.div variants={fadeInUp} className="portfolio-card">
-                <div className="card-icon"><ExternalLink size={24} /></div>
                 <h3>Suresh Gyan Vihar University</h3>
                 <span className="card-subtitle">Educational Institution Campaigning</span>
                 <p>Managed institutional brand communication and engagement drives targeted towards students and educational stakeholders.</p>
+                <a href="https://www.instagram.com/sureshgyanvihar.university?igsh=MTJ0cml6MmU4dmZ0bQ==" target="_blank" rel="noreferrer" className="see-profile-link">
+                  See profile <ExternalLink size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
+                </a>
               </motion.div>
 
               <motion.div variants={fadeInUp} className="portfolio-card">
-                <div className="card-icon"><ExternalLink size={24} /></div>
                 <h3>Vivekananda Global University</h3>
                 <span className="card-subtitle">Campaign Execution & Event Coverage</span>
                 <p>Executed strategic media coordination for promotional and institutional events to improve student enrollment awareness.</p>
+                <a href="https://www.instagram.com/vgujaipur?igsh=N2RkM3Q1NDlmOXZ0" target="_blank" rel="noreferrer" className="see-profile-link">
+                  See profile <ExternalLink size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
+                </a>
               </motion.div>
 
               <motion.div variants={fadeInUp} className="portfolio-card">
-                <div className="card-icon"><ExternalLink size={24} /></div>
                 <h3>Maxopp</h3>
                 <span className="card-subtitle">Digital Marketing Campaign</span>
                 <p>Collaborated with production teams to successfully design and deliver impactful social media creatives and marketing collaterals.</p>
+                <a href="https://www.instagram.com/maxopp.global?igsh=MXE4b2djdDQ2OXF3bA==" target="_blank" rel="noreferrer" className="see-profile-link">
+                  See profile <ExternalLink size={14} style={{ display: 'inline', marginLeft: '4px', verticalAlign: 'middle' }} />
+                </a>
               </motion.div>
             </div>
           </motion.div>
@@ -392,19 +454,20 @@ function App() {
           <p className="contact-subtitle">Fill out the form below and I'll get back to you as soon as possible.</p>
           
           <form className="contact-form" onSubmit={handleContactSubmit}>
+            {isError && <p style={{ color: '#ea6441', marginBottom: '1rem' }}>Failed to send message. Please try again.</p>}
             <div className="form-group">
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" className="form-input" placeholder="Your Name" required disabled={isSubmitted} />
+              <input type="text" id="name" className="form-input" placeholder="Your Name" required disabled={isSubmitted} value={formData.name} onChange={handleChange} />
             </div>
             
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" className="form-input" placeholder="your@email.com" required disabled={isSubmitted} />
+              <input type="email" id="email" className="form-input" placeholder="your@email.com" required disabled={isSubmitted} value={formData.email} onChange={handleChange} />
             </div>
             
             <div className="form-group">
               <label htmlFor="message">Message</label>
-              <textarea id="message" className="form-textarea" placeholder="How can we collaborate?" required disabled={isSubmitted}></textarea>
+              <textarea id="message" className="form-textarea" placeholder="How can we collaborate?" required disabled={isSubmitted} value={formData.message} onChange={handleChange}></textarea>
             </div>
             
             <motion.button 
@@ -435,9 +498,9 @@ function App() {
             <p>I'm always open to discussing new marketing projects, creative campaigns, or opportunities to be a part of your brand's vision.</p>
           </div>
           <div className="footer-links">
-            <a href="https://instagram.com/himshri.dugar" target="_blank" rel="noreferrer"><InstagramIcon /> @himshri.dugar</a>
+            <a href="https://www.instagram.com/hiimshreeee?igsh=bW0zdDBmOHp3bnBo" target="_blank" rel="noreferrer"><InstagramIcon /> @hiimshreeee</a>
             <a href="https://linkedin.com/in/himshri-dugar" target="_blank" rel="noreferrer"><LinkedinIcon /> in/himshri-dugar</a>
-            <a href="mailto:himshridugar29@gmail.com"><MailIcon /> himshridugar29@gmail.com</a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=himshridugar29@gmail.com" target="_blank" rel="noreferrer"><MailIcon /> himshridugar29@gmail.com</a>
           </div>
         </motion.div>
         <div className="footer-bottom">
